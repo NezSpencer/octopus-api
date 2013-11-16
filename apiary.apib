@@ -1,47 +1,48 @@
 FORMAT: 1A
-HOST: http://www.google.com
+HOST: TODO
 
 # Sir Octopus API
-Notes API is a *short texts saving* service similar to its physical paper presence on your table.
+API specification used for communication between server and Android client.
 
-# Group Notes
-Notes related resources of the **Notes API**
-
-## Notes Collection [/notes]
-### List all Notes [GET]
+## Tasks [/tasks]
+### List all Tasks [GET]
 + Response 200 (application/json)
 
         [{
-          "id": 1, "title": "Jogging in park"
+          "id": 1, "text": "Pray for Sir Octopus"
         }, {
-          "id": 2, "title": "Pick-up posters from post-office"
+          "id": 2, "text": "Save small octopuses"
         }]
 
-### Create a Note [POST]
+### Create a Task [POST]
 + Request (application/json)
 
-        { "title": "Buy cheese and bread for breakfast." }
+        { "text": "Feed Sir Octopus" }
 
 + Response 201 (application/json)
 
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
+        { "id": 3, "text": "Feed Sir Octopus" }
 
-## Note [/notes/{id}]
-A single Note object with all its details
+## Task [/tasks/{id}]
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+    + id (required, number, `1`) ... Numeric `id` of the Task
 
 ### Retrieve a Note [GET]
 + Response 200 (application/json)
 
-    + Header
-
-            X-My-Header: The Value
-
     + Body
 
-            { "id": 2, "title": "Pick-up posters from post-office" }
+            { "id": 3, "title": "Feed Sir Octopus" }
+
+### Update a Task [PUT]
++ Request (application/json)
+
+        { "text": "Feed Sir Octopus!" }
+
++ Response 201 (application/json)
+
+        { "id": 3, "text": "Feed Sir Octopus!" }
 
 ### Remove a Note [DELETE]
 + Response 204
