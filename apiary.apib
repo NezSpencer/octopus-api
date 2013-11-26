@@ -9,19 +9,57 @@ API specification used for communication between server and Android client.
 + Response 200 (application/json)
 
         [{
-          "id": 1, "text": "Pray for Sir Octopus"
+          "id": 1, 
+          "name": "Pray for Sir Octopus", 
+          "description": "Get down on knees and pray!",
+          "manager": 1,
+          "owner": 2,
+          "deadline": "2013-12-21",
+          "status": 1
         }, {
-          "id": 2, "text": "Save small octopuses"
+          "id": 2, 
+          "name": "Save small octopuses", 
+          "description": "",
+          "manager": null,
+          "owner": 1,
+          "deadline": "2013-12-07",
+          "status": 2
         }]
 
 ### Create a Task [POST]
 + Request (application/json)
 
-        { "text": "Feed Sir Octopus" }
+        { 
+        "name": "Feed Sir Octopus",
+        "description": "He likes schrimps.",
+        "owner": 2,
+        "deadline": "2013-11-30"
+        }
 
 + Response 201 (application/json)
 
-        { "id": 3, "text": "Feed Sir Octopus" }
+        { 
+        "id": 3,
+        "name": "Feed Sir Octopus",
+        "description": "He likes schrimps.",
+        "owner": 2,
+        "deadline": "2013-11-30"
+        }
+
+## Task statuses [/taskstatus]
+### Retrive task statuses [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1, 
+          "name": "Opened" 
+        },{
+          "id": 2, 
+          "name": "Completed" 
+        },{
+          "id": 3, 
+          "name": "Canceld" 
+        }]
 
 ## Task [/tasks/{id}]
 
@@ -33,16 +71,70 @@ API specification used for communication between server and Android client.
 
     + Body
 
-            { "id": 3, "title": "Feed Sir Octopus" }
+            { "id": 3, 
+            "name": "Feed Sir Octopus",
+            "description": "He likes schrimps.",
+            "owner": 2,
+            "deadline": "2013-11-30"
+            }
 
 ### Update a Task [PUT]
 + Request (application/json)
 
-        { "text": "Feed Sir Octopus!" }
+        { 
+        "name": "Feed Sir Octopus!"
+        }
 
 + Response 201 (application/json)
 
-        { "id": 3, "text": "Feed Sir Octopus!" }
+        { 
+        "id": 3, 
+        "name": "Feed Sir Octopus!",
+        "description": "He likes schrimps.",
+        "owner": 2,
+        "deadline": "2013-11-30"
+        }
 
 ### Remove a Task [DELETE]
 + Response 204
+
+## Users [/users]
+### Create a User [POST]
++ Request (application/json)
+
+        { 
+        "name": "Sir",
+        "Surname": "Octopus",
+        "manager": 1,
+        "username": "octopuss",
+        "password": "fcf1eed8596699624167416a1e7e122e"
+        }
+
++ Response 201 (application/json)
+
+        { 
+        "id": 1,
+        "name": "Sir",
+        "Surname": "Octopus",
+        "manager": 1,
+        "username": "octopuss",
+        "password": "fcf1eed8596699624167416a1e7e122e"
+        }
+ 
+## User [/users/{id}]
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the User
+ 
+### Retrive a User [GET]       
++ Response 200 (application/json)
+
+    + Body
+
+            { 
+            "id": 1,
+            "name": "Sir",
+            "Surname": "Octopus",
+            "manager": 1,
+            "username": "octopuss",
+            "password": "fcf1eed8596699624167416a1e7e122e"
+            }
